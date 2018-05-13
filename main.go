@@ -49,6 +49,9 @@ func main() {
 	name := "Meng Guang"
 	hash := sha256.Sum256([]byte(name))
 	fee, err := simpleRegistry.Fee(nil)
+	if err != nil {
+		log.Fatalf("Failed to call Fee: %v", err)
+	}
 	opts.Value =  fee
 
 	tx, err := simpleRegistry.Reserve(opts,hash)
